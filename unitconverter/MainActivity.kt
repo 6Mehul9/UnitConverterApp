@@ -44,9 +44,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UnitConverterTheme {
-                // A surface container using the 'background' color
-                // from the theme
+            UnitConverterTheme {            
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -74,14 +72,12 @@ fun UnitConverter(){
 
 
     val customTextStyle = TextStyle(
-        fontFamily = FontFamily.Default, // Replace with your desired font family
-        fontSize = 16.sp, // Replace with your desired font size
-        color = Color.Red // Replace with your desired text color
+        fontFamily = FontFamily.Default, 
+        fontSize = 16.sp,
+        color = Color.Red 
     )
 
     fun convertUnits(){
-
-        // ?: - elvis operator
         val inputValueDouble = inputValue.toDoubleOrNull() ?: 0.0
         val result = (inputValueDouble * conversionFactor.value * 100.0 / oConversionFactor.value).roundToInt() / 100.0
         outputValue = result.toString()
@@ -93,7 +89,6 @@ fun UnitConverter(){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        // Here all the UI elements will be stacked below each other
         Text("Unit Converter", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
         OutlinedTextField(
@@ -101,14 +96,12 @@ fun UnitConverter(){
             onValueChange = {
                 inputValue = it
                 convertUnits()
-            // Here goes what should happen, when the Value of our OutlinedTextField changes
+           
             },
             label = {Text("Enter Value") })
         Spacer(modifier = Modifier.height(16.dp))
         Row {
-            // Input Box
             Box {
-                // Input Button
                 Button(onClick = { iExpanded = true }) {
                     Text(text = inputUnit)
                     Icon(Icons.Default.ArrowDropDown,
@@ -153,9 +146,9 @@ fun UnitConverter(){
                 }
             }
             Spacer(modifier = Modifier.width(16.dp))
-            // Output Box
+         
             Box {
-                // Output Button
+                
                 Button(onClick = { oExpanded = true }) {
                     Text(text = outputUnit)
                     Icon(Icons.Default.ArrowDropDown,
@@ -200,11 +193,9 @@ fun UnitConverter(){
                     )
                 }
             }
-            // Here all the UI elements will be stacked next to each other
-
+        
         }
         Spacer(modifier = Modifier.height(16.dp))
-        // Result Text
         Text("Result: $outputValue $outputUnit",
                 style = MaterialTheme.typography.headlineMedium
             )
